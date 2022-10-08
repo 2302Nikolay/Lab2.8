@@ -60,10 +60,12 @@ def list_d(list_man):
     print(line)
 
 
-def select(mans_list, sel_d):
+def select(command_d, mans_list):
+    parts = command_d.split(' ', maxsplit=1)
+    sel = parts[1]
     count = 0
     for man in mans_list:
-        if man.get('number') == sel_d:
+        if man.get('number') == sel:
             count += 1
             print(
                 '{:>4}: {}'.format(count, man.get('name', ''))
@@ -98,9 +100,7 @@ if __name__ == '__main__':
         elif command == 'list':
             list_d(manlist)
         elif command.startswith('select '):
-            parts = command.split(' ', maxsplit=1)
-            sel = parts[1]
-            select(manlist, sel)
+            select(command, manlist)
         elif command == 'help':
             help_d()
         else:
